@@ -1,0 +1,25 @@
+class Solution {
+    public int integerBreak(int n) {
+       int dp[]=new int[n];
+       Arrays.fill(dp,-1);
+       return solve(n,dp);
+        
+    }
+
+    public int solve(int n,int dp[]){
+        if(n==1){
+            return 1;
+        }
+        if(dp[n-1]!=-1){
+            return dp[n-1];
+        }
+        int result= Integer.MIN_VALUE;
+
+        for(int i=1;i<n;i++){
+
+            int max= i*Math.max(n-i, solve(n-i,dp));
+            result=Math.max(max,result);
+        }
+        return dp[n-1]= result;
+    }
+}

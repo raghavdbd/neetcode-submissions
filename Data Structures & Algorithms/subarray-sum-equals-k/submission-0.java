@@ -1,0 +1,27 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        // we will solve this Quesation using Prefix sum 
+
+        HashMap<Integer,Integer>h1=new HashMap<>();
+
+        h1.put(0,1);
+        int ans=0;
+        int sum=0;
+
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+            if(h1.containsKey(sum-k)){
+                ans+= h1.get(sum-k);
+            }
+            if(h1.containsKey(sum)){
+                h1.put(sum, h1.get(sum)+1);
+            }else{
+                h1.put(sum,1);
+            }
+
+        }
+        return ans;
+        
+    }
+}
